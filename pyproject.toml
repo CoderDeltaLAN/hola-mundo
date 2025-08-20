@@ -58,3 +58,4 @@ mypy_path = ["src"]
 
 [tool.poetry.scripts]
 hola = "hola_mundo.main:hola"
+lint = "ruff.__main__:main"
