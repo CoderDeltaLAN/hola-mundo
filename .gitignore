@@ -1,0 +1,21 @@
+# --- Python / build
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# --- Herramientas
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- IDE
+.vscode/
+.idea/

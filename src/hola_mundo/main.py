@@ -3,4 +3,4 @@ def hola(nombre: str = "mundo") -> str:
 
 
 if __name__ == "__main__":
-    print(hola())  # pragma: no cover
+    print(hola())  # pragma: no cover  # pragma: no cover
