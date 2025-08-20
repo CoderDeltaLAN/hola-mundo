@@ -1,0 +1,57 @@
+[project]
+name = "hola-mundo"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "CoderDeltaLan",email = "coderdeltalan@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+black = "^25.1.0"
+ruff = "^0.12.9"
+mypy = "^1.17.1"
+pytest-cov = "^6.2.1"
+pre-commit = "^4.3.0"
+ipykernel = "^6.30.1"
+
+
+[tool.pytest.ini_options]
+addopts = "-q --cov=hola_mundo --cov-report=term-missing"
+testpaths = ["tests"]
+
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+src = ["src"]
+extend-exclude = ["build", "dist", ".venv"]
+select = ["E","F","I","N","W","UP","B","PT","RUF"]
+ignore = ["E203"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["hola_mundo"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+pretty = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+show_error_codes = true
+mypy_path = ["src"]
+
+[tool.poetry.scripts]
+hola = "hola_mundo.main:hola"
