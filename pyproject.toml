@@ -38,8 +38,11 @@ line-length = 88
 target-version = "py312"
 src = ["src"]
 extend-exclude = ["build", "dist", ".venv"]
+[tool.ruff.lint]
 select = ["E","F","I","N","W","UP","B","PT","RUF"]
 ignore = ["E203"]
+
+
 
 [tool.ruff.lint.isort]
 known-first-party = ["hola_mundo"]

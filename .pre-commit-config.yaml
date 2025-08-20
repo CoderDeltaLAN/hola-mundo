@@ -5,16 +5,24 @@ repos:
       - id: ruff
         args: [--fix]
       - id: ruff-format
+
   - repo: https://github.com/psf/black
     rev: 25.1.0
     hooks:
       - id: black
+
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.10.0
     hooks:
       - id: mypy
-  - repo: https://github.com/pytest-dev/pytest
-    rev: 8.4.1
+
+  # Pytest como hook local (no del repo pytest)
+  - repo: local
     hooks:
       - id: pytest
+        name: pytest
+        entry: poetry run pytest -q
+        language: system
+        types: [python]
+        pass_filenames: false
         stages: [manual]
