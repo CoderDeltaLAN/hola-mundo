@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v3
+        with:
+          poetry-version: "2.1.4"
+
+      - name: Cache Poetry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pypoetry
+            ~/.cache/pip
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-
+
+      - name: Install deps
+        run: poetry install
+
+      - name: Ruff
+        run: poetry run ruff check .
+
+      - name: Black (check)
+        run: poetry run black --check .
+
+      - name: Mypy
+        run: poetry run mypy src
+
+      - name: Tests + coverage
+        run: poetry run pytest -q --cov=hola_mundo --cov-report=term-missing
